@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pets>
+	<dogs>
+		<dog id="1">			
+			<name>YAYA</name>
+			<health>100</health>
+			<love>0</love>
+			<strain>酷酷的雪娜瑞</strain>
+		</dog>
+		<dog id="2">			
+			<name>OUOU</name>
+			<health>90</health>
+			<love>15</love>
+			<strain>聪明的拉布拉多犬</strain>
+		</dog>
+	</dogs>
+	<penguins>
+		<penguin id="3">			
+			<name>QQ</name>
+			<health>100</health>
+			<love>20</love>
+			<sex>Q仔</sex>			
+		</penguin>		
+	</penguins>
+</pets>

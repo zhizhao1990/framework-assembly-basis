@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 配置数据源（使用DBCP数据库连接池） 
+		 1. 数据库连接池负责分配、管理和释放数据库连接；
+		 2. 它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个；
+		 3. 释放空闲时间超过最大空闲时间的数据库连接来避免因为没有释放数据库连接而引起的数据库连接遗漏。
+		  这项技术能明显提高对数据库操作的性能。
+		-->
+	<!-- MyBatis ORM 数据源配置. -->
+	<bean id="dataSourceForMyBatis" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<property name="maxActive" value="${maxActive}" />
+		<property name="maxIdle" value="${maxIdle}" />
+	</bean>
+	
+	<!-- Hibernate ORM 数据源配置. -->
+	<bean id="dataSourceForHiberante" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+	</bean>
+	
+	<!-- C3P0 Datasource Configuration.
+		<bean id="dataSourceForC3P0" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+			<property name="driverClass" value="${jdbc.driverClassName}"/>
+			<property name="jdbcUrl" value="${jdbc.url}"/>
+			<property name="user" value="${jdbc.username}"/>
+			<property name="password" value="${jdbc.password}"/>
+		</bean>
+		-->
+</beans>
