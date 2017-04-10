@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/user/user.js"></script>
+<script src="js/ajaxfileupload.js"></script>
+<title>添加用户</title>
+</head>
+<body style="padding: 20px;">
+	
+	<input id="id" type="hidden" value="$!{user.id}" />
+	<div style="margin-top: 20px;">
+		<div class="list-group" style="margin-top: 15px;">
+			<a class="list-group-item active">
+				<p class="list-group-item-text" style="display: inline; font-weight: bold; margin-left: 30px; margin-right: 50px;">姓名</p> 
+				<input type="text" id="name" name="name" style="display: inline;" placeholder="请输入姓名" value="$!{user.name}">
+			</a>
+		</div>
+		#if($!{user.name})
+		<div class="list-group" style="margin-top: 15px;">
+			<a class="list-group-item active">
+				<p class="list-group-item-text" style="display: inline; font-weight: bold; margin-left: 30px; margin-right: 5px;">头像</p>
+				<input id="avatar" type="file" style="display: inline;">
+				<input type="button" value="上传" />
+			</a>
+		</div>
+		#else
+		<div class="list-group" style="margin-top: 15px;">
+			<a class="list-group-item active">
+				<p class="list-group-item-text" style="display: inline; font-weight: bold; margin-left: 30px; margin-right: 5px;">头像</p>
+				<input type="file" id="avatar" name="avatar" style="display: inline; width:200px;">
+				<input type="button" value="上传" style="display: inline;" onclick="upload('avatar')" />
+			</a>
+		</div>
+		#end
+		<div class="list-group" style="margin-top: 15px;">
+			<a class="list-group-item active">
+				<p class="list-group-item-text" style="display: inline; font-weight: bold; margin-left: 30px; margin-right: 50px;">性别</p>
+				<select id="sex" name="sex">
+					<option value="-1">请选择</option>
+					#if($!{user.sex})
+						#if(0 == ${user.sex})
+							<option value="0" selected="true">男</option>
+						#elseif(1 == ${user.sex})
+							<option value="1" selected="true">女</option>
+						#elseif(2 == ${user.sex})
+							<option value="2" selected="true">保密</option>
+						#end
+					#else
+						<option value="0">男</option>
+						<option value="1">女</option>
+						<option value="2">保密</option>
+					#end
+				</select> 
+			</a>
+		</div>
+		<div class="list-group" style="margin-top: 15px;">
+			<a class="list-group-item active">
+				<p class="list-group-item-text" style="display: inline; font-weight: bold; margin-left: 30px; margin-right: 50px;">年龄</p> 
+				<input id="age" type="text" name="age" style="display: inline;" placeholder="请输入年龄" value="$!{user.age}">
+			</a>
+		</div>
+		<div style="text-align: center;">
+			#if($!{user.name})
+				<button type="button" class="btn btn-success dropdown-toggle" style="margin-right:-300px; font-weight: bold;" onclick="addOrUpdateUserPost(1)">修改</button>
+			#else
+				<button type="button" class="btn btn-success dropdown-toggle" style="margin-right:-300px; font-weight: bold;" onclick="addOrUpdateUserPost(0)">添加</button>
+			#end
+			<button type="button" class="btn btn-success dropdown-toggle" style="margin-right:-300px; font-weight: bold;" onclick="getSampleUser()">GetSampleUser</button>
+		</div>
+		
+		<!-- 请求验证码 -->
+		<img src="user.htm?action=getcheckcode">
+	</div>
+</body>
+</html>

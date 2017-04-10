@@ -1,0 +1,5 @@
+package com.cmc.dp.pattern.strategy;
+
+public interface Strategy {
+    public int doOperation(int num1, int num2);
+}

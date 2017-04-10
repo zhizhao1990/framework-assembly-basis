@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/task 
+	http://www.springframework.org/schema/task/spring-task-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 
+		@reference:
+		http://blog.csdn.net/js931178805/article/details/39642743
+		http://blog.csdn.net/shan9liang/article/details/9117233
+		http://blog.csdn.net/zzq900503/article/details/49892783
+		http://www.importnew.com/11121.html
+		http://www.mkyong.com/spring/maven-spring-hibernate-mysql-example/ -->		
+		
+	<!-- 数据源配置. -->	
+	<import resource="classpath:config/db/db.xml" />
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceForHiberante" />
+		<property name="packagesToScan">
+			<list>
+				<!-- 可以加多个包 -->
+				<value>com.cmc.designer.facade.entity</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<!--  <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
+				<!-- <prop key="hibernate.show_sql">${hibernate.show_sql}</prop> -->
+				<!--  <prop key="hibernate.current_session_context_class">thread</prop> --> 
+			</props>
+		</property>
+	</bean>
+    
+	<!-- 配置Hibernate事务管理器 -->
+	<bean id="transactionManager4Hibernate" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+   
+	<!-- 配置事务异常封装 -->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+       
+	<!--  事务增强配置：声明式容器事务管理 ,transaction-manager指定事务管理器为transactionManager -->
+	<tx:advice id="txAdvice4Hibernate" transaction-manager="transactionManager4Hibernate">
+		<tx:attributes>
+			<!-- http://blog.csdn.net/kiwi_coder/article/details/20214939 -->
+			<!-- REQUIRED（默认值）：在有transaction状态下执行；如当前没有transaction，则创建新的transaction；参考事务的传播行为 -->
+			<!-- Typically, all code executed within a transaction scope will run in that transaction. However, you have the option of specifying the behavior in the event that a transactional method is executed when a transaction context already exists. For example, code can continue running in the existing transaction (the common case); or the existing transaction can be suspended and a new transaction created. Spring offers all of the transaction propagation options familiar from EJB CMT.  -->
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" />
+			<!-- all methods starting with 'get' are read-only -->
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+    
+	<!-- 通过AOP进行事务增强配置 -->
+	<aop:config expose-proxy="true">
+		<!-- 只对业务逻辑层实施事务 -->
+		<aop:pointcut id="txPointcut" expression="execution(* com.lei.demo.service..*.*(..))" />
+		<!-- Advisor定义，切入点和通知分别为txPointcut、txAdvice -->
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice4Hibernate"/>
+	</aop:config>
+	
+</beans>
