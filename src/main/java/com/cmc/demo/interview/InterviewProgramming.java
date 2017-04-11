@@ -30,6 +30,19 @@ public class InterviewProgramming {
     private InterviewProgramming() {
     }
 
+    public static void main(String[] args) {
+        List<Integer> nums = new LinkedList<Integer>();
+        nums.add(0, 1);
+        nums.add(1, 101);
+        nums.add(2, 2);
+        nums.add(3, 3);
+        nums.add(4, 100);
+        nums.add(5, 4);
+        nums.add(6, 98);
+        int rst = maxIncreasingSubsequenceSum(nums);
+        System.out.println(rst);
+    }
+
     /**
      * 文件复制
      * @param fromFile
@@ -160,17 +173,8 @@ public class InterviewProgramming {
 
     }
 
-    public static void main(String[] args) {
-        List<Integer> nums = new LinkedList<Integer>();
-        nums.add(0, 1);
-        nums.add(1, 101);
-        nums.add(2, 2);
-        nums.add(3, 3);
-        nums.add(4, 100);
-        nums.add(5, 4);
-        nums.add(6, 98);
-        int rst = maxIncreasingSubsequenceSum(nums);
-        System.out.println(rst);
-    }
-
+    // 排序算法
+    // 数据结构
+    // 查找算法
+    // Socket
 }

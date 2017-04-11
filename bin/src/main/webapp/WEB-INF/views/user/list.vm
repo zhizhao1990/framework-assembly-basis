@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-1.11.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/user/user.js"></script>
+<title>用户列表</title>
+</head>
+<body style="padding: 20px;">
+	<div style="margin-top: 20px;">
+		<div style="text-align: center;">
+			<button type="button" class="btn btn-success dropdown-toggle" onclick="addUserGet()">添加用户</button>
+			<button type="button" class="btn btn-success dropdown-toggle" onclick="postReq()">临时Btn</button>
+			<button type="button" class="btn btn-warning dropdown-toggle" onclick="logout()">登出</button>
+		</div>
+		<table>
+			#foreach($user in $!{users.list})
+			<tr>
+				<td style="width: 35%;">
+					<div class="list-group" style="margin-top: 15px;">
+						<a class="list-group-item active">
+							<p class="list-group-item-text">$!{user.name}</p>
+						</a>
+					</div>
+				</td>
+				<td style="width: 25%;">
+					<div class="list-group" style="margin-top: 15px;">
+						<a class="list-group-item active">
+							<p class="list-group-item-text">$!{user.strSex}</p>
+						</a>
+					</div>
+				</td>
+				<td style="width: 25%;">
+					<div class="list-group" style="margin-top: 15px;">
+						<a class="list-group-item active">
+							<p class="list-group-item-text">$!{user.age}</p>
+						</a>
+					</div>
+				</td>
+				<td style="width: 15%; text-align: center;">
+					<div class="list-group" style="margin-top: 15px;">
+						<a class="list-group-item active">
+							<p class="list-group-item-text">
+								<button type="button" class="btn btn-warning dropdown-toggle" onclick="getUser('$!{user.id}')">详情</button>
+								<button type="button" class="btn btn-danger dropdown-toggle" style="margin-top: 7px;" onclick="deleteUser('$!{user.id}')">删除</button>
+							</p>
+						</a>
+					</div>
+				</td>
+			</tr>
+			#end
+			<tr>
+				<td>
+					<button type="button" class="btn btn-info" style="margin-left: 70%; font-weight: bold;" onclick="prePage('$!{users.pageNo}', '$!{users.pageCount}')">上一页</button>
+				</td>
+				<td colspan="2">
+					<button type="button" class="btn btn-info" onclick="" style="margin-left: 25%; font-weight: bold;">$!{users.pageNo}</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-info" style="margin-left: -83%; font-weight: bold;" onclick="nextPage('$!{users.pageNo}', '$!{users.pageCount}')">下一页</button>
+				</td>
+			</tr>
+		</table>
+		<br />
+	</div>
+</body>
+</html>
