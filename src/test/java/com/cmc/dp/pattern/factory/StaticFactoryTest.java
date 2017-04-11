@@ -1,15 +1,12 @@
 package com.cmc.dp.pattern.factory;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cmc.user.facade.service.UserService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:config/*.xml" })
+// @RunWith(SpringJUnit4ClassRunner.class)
+// @ContextConfiguration({ "classpath:config/*.xml" })
 public class StaticFactoryTest {
 
     @Autowired

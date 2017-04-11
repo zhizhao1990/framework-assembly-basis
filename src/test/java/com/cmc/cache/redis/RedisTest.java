@@ -1,19 +1,16 @@
 package com.cmc.cache.redis;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:config/spring-context.xml" })
+// @RunWith(SpringJUnit4ClassRunner.class)
+// @ContextConfiguration({ "classpath:config/spring-context.xml" })
 public class RedisTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(RedisTest.class);

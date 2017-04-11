@@ -6,10 +6,7 @@ import java.util.UUID;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cmc.common.BizException;
 import com.cmc.common.constants.Sex;
@@ -18,8 +15,8 @@ import com.cmc.common.utils.PaginationResult;
 import com.cmc.user.facade.entity.User;
 import com.cmc.user.facade.model.UserModel;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:config/spring/*.xml" })
+// @RunWith(SpringJUnit4ClassRunner.class)
+// @ContextConfiguration({ "classpath:config/spring/*.xml" })
 public class UserServiceTest {
 
     private static final Logger logger = Logger.getLogger(UserServiceTest.class);

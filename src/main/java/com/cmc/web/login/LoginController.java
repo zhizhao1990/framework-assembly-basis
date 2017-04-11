@@ -33,16 +33,15 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @SuppressWarnings("unused")
     @RequestMapping(method = RequestMethod.GET, params = "action=login")
     public String login(HttpServletRequest req) throws FileNotFoundException {
         // InputStream ins =
         // this.getClass().getClassLoader().getResourceAsStream("config.properties");
         // ClassLoader.getSystemResourceAsStream ("");
         // req.getServletContext().getRealPath("");
-        // InputStream in = new FileInputStream(new
+        // InputStream in = new FileInputStream(news
         // File(req.getServletContext().getRealPath("WEB-INF\\classes\\config.properties")));
-        String tmp = Constants.TMP;
+        // String tmp = Constants.TMP;
         return "login/login";
     }
 

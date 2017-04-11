@@ -36,6 +36,8 @@
 	<import resource="classpath:config/hibernate/spring-hibernate.xml" />
 	<import resource="classpath:config/service/service.xml" />
 	<import resource="classpath:config/cache/spring-cache.xml" />
+	<!--
 	<import resource="classpath:config/mq/spring-mq-producer.xml" />
 	<import resource="classpath:config/mq/spring-mq-consumer.xml" />
+	-->
 </beans>

@@ -25,9 +25,12 @@ import com.cmc.permission.facade.service.PermissionService;
 import com.cmc.user.facade.entity.User;
 import com.cmc.user.facade.model.UserModel;
 import com.cmc.user.facade.service.UserService;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 @Controller
 @RequestMapping("user.htm")
+@Api(value = "user.htm", description = "用户")
 public class UserController {
 
     private static final Logger LOG = Logger.getLogger(UserController.class);
@@ -42,7 +45,7 @@ public class UserController {
 
     // @Autowired
     // private CacheManager cacheManager;
-
+    @ApiOperation(value = "添加用户", notes = "添加用户")
     @RequestMapping(method = RequestMethod.GET, params = "action=add")
     public String add() {
         try {
@@ -58,6 +61,7 @@ public class UserController {
         return "user/detail";
     }
 
+    @ApiOperation(value = "添加用户", notes = "添加用户")
     @ResponseBody
     @RequestMapping(method = RequestMethod.POST, params = "action=add")
     public AjaxGeneralResult add(HttpServletRequest request, UserModel dto) {

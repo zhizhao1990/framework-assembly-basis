@@ -18,6 +18,13 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
+	<!-- 启用MVC注解 -->  
+	<mvc:annotation-driven />  
+	<!-- 将 springSwaggerConfig加载到spring容器 -->  
+	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />  
+	<!-- 将自定义的swagger配置类加载到spring容器 -->  
+	<bean class="com.cmc.config.swagger.SwaggerConfig" />  
+	
 	<!-- Spring Task
 		<task:annotation-driven /> 
 		<context:component-scan base-package="com.cmc.service.task" /> 
@@ -40,15 +47,19 @@
 		<property name="suffix" value=".vm" />
 	</bean>
 	
-	<!-- 使项目支持JSON -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-		<property name="messageConverters">
-			<list>
-				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
-			</list>
-		</property>
-	</bean>
-	
+	<!-- Swagger资源重定向(仅作为后台使用不提供静态资源) -->
+	<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+   
+	<!-- 使项目支持普通类型的变量转换为JSON
+		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+			<property name="messageConverters">
+				<list>
+					<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+				</list>
+			</property>
+		</bean>
+			 -->  
 	<!-- 配置拦截器 -->
 	<!--
 		<mvc:interceptors>
@@ -63,4 +74,7 @@
 	<!-- 文件上传Bean配置 --> 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8" p:maxUploadSize="1000000"/>
 	
+	<!--Swagger  -->
+	<context:component-scan base-package="com.cmc.config.swagger"/> 
+	<bean class="com.cmc.config.swagger.SwaggerConfig"/>
 </beans>

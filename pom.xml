@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
 	http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- maven2.0必须是这样写，现在是maven2唯一支持的版本 -->
@@ -7,7 +8,8 @@
 	<groupId>com.cmc.demo</groupId>
 	<!-- 指定工程名例如：framework-assembly-basis -->
 	<artifactId>framework-assembly-basis</artifactId>
-	<!-- The current core packaging values are: pom, jar, maven-plugin, ejb, war, ear, rar, par -->
+	<!-- The current core packaging values are: pom, jar, maven-plugin, ejb, 
+		war, ear, rar, par -->
 	<packaging>war</packaging>
 	<!-- 指定版本号 -->
 	<version>0.0.1-SNAPSHOT</version>
@@ -118,22 +120,10 @@
 		</plugins>
 
 		<!-- 配置resource -->
-		<!--
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				资源根目录排除各环境的配置，防止在生成目录中多余其它目录
-				<excludes>
-					<exclude>test/*</exclude>
-					<exclude>pro/*</exclude>
-					<exclude>dev/*</exclude>
-				</excludes>
-			</resource>
-			<resource>
-				<directory>src/main/resources/${profiles.active}</directory>
-			</resource>
-		</resources>
-		-->
+		<!-- <resources> <resource> <directory>src/main/resources</directory> 资源根目录排除各环境的配置，防止在生成目录中多余其它目录 
+			<excludes> <exclude>test/*</exclude> <exclude>pro/*</exclude> <exclude>dev/*</exclude> 
+			</excludes> </resource> <resource> <directory>src/main/resources/${profiles.active}</directory> 
+			</resource> </resources> -->
 	</build>
 
 	<profiles>
@@ -176,7 +166,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>4.12</version>
 			<!-- 表示开发的时候引入，发布的时候不会加载此包 -->
 			<scope>test</scope>
 		</dependency>
@@ -486,8 +476,12 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>1.6</version>
 		</dependency>
-		<!-- org.jpxx.commons下面的commons-cache，因为该jar放在卓键私有库中，所以为了移植方便需要使用中央库中的jar。@status 待配置 -->
-		<!-- <dependency> <groupId>org.jpxx.commons</groupId> <artifactId>commons-cache</artifactId> <version>1.0.0.20110619</version> <classifier>20110619</classifier> <exclusions> <exclusion> <artifactId>servlet-api</artifactId> <groupId>javax.servlet</groupId> </exclusion> </exclusions> </dependency> -->
+		<!-- org.jpxx.commons下面的commons-cache，因为该jar放在卓键私有库中，所以为了移植方便需要使用中央库中的jar。@status 
+			待配置 -->
+		<!-- <dependency> <groupId>org.jpxx.commons</groupId> <artifactId>commons-cache</artifactId> 
+			<version>1.0.0.20110619</version> <classifier>20110619</classifier> <exclusions> 
+			<exclusion> <artifactId>servlet-api</artifactId> <groupId>javax.servlet</groupId> 
+			</exclusion> </exclusions> </dependency> -->
 
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
@@ -539,11 +533,8 @@
 			<artifactId>mybatis-generator-core</artifactId>
 			<version>1.3.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-all</artifactId>
-			<version>5.11.1</version>
-		</dependency>
+		<!-- 这里不能直接饮用activemq-all，和slf4j冲突 <dependency> <groupId>org.apache.activemq</groupId> 
+			<artifactId>activemq-all</artifactId> <version>5.11.1</version> </dependency> -->
 		<dependency>
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
@@ -553,6 +544,19 @@
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
+		</dependency>
+
+		<!-- swagger -->
+		<dependency>
+			<groupId>com.mangofactory</groupId>
+			<artifactId>swagger-springmvc</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.4.Final</version>
 		</dependency>
 	</dependencies>
 </project>
