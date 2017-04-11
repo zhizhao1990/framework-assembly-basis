@@ -1,39 +1,44 @@
 package com.cmc.config.swagger;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.ApiSelectorBuilder;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@EnableSwagger
+@EnableWebMvc
+@EnableSwagger2
+@Configuration
 public class SwaggerConfig {
 
-    private SpringSwaggerConfig springSwaggerConfig;
-
-    /**
-     * Required to autowire SpringSwaggerConfig
-     */
-    @Autowired
-    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-        this.springSwaggerConfig = springSwaggerConfig;
-    }
-
-    /**
-     * Every SwaggerSpringMvcPlugin bean is picked up by the swagger-mvc
-     * framework - allowing for multiple swagger groups i.e. same code base
-     * multiple swagger resource listings.
-     */
     @Bean
-    public SwaggerSpringMvcPlugin customImplementation() {
-        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?");
+    public Docket createRestApi() {
+        // 一个简单的任务执行时间监视器
+        Docket docket = new Docket(DocumentationType.SWAGGER_2);
+        docket.apiInfo(apiInfo());
+        ApiSelectorBuilder selectorBuilder = new ApiSelectorBuilder(docket);
+        selectorBuilder.apis(RequestHandlerSelectors.basePackage("com.cmc.web"));
+        selectorBuilder.paths(PathSelectors.any());
+        docket = selectorBuilder.build();
+        return docket;
     }
 
     private ApiInfo apiInfo() {
-        ApiInfo apiInfo = new ApiInfo("springmvc搭建swagger", "spring-API swagger测试", "My Apps API terms of service", "534560449@qq.com", "web app", "My Apps API License URL");
-        return apiInfo;
+        ApiInfoBuilder infoBuilder = new ApiInfoBuilder();
+        infoBuilder.title("Spring中使用Swagger2构建RESTful APIs.");
+        infoBuilder.description("客户端与服务端接口文档.");
+        // infoBuilder.contact("");
+        // infoBuilder.license("Apache 2.0");
+        // infoBuilder.licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html");
+        // infoBuilder.version("1.0.0");
+        return infoBuilder.build();
     }
 
 }

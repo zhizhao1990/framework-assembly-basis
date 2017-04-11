@@ -2,13 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<script src="js/jquery-1.11.2.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/login/login.js"></script>
-
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <title>用户列表</title>
 </head>
 <body>
@@ -27,4 +22,7 @@
 		</div>
 	</div>
 </body>
+<script src="/js/jquery-1.11.2.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/login/login.js"></script>
 </html>

@@ -18,40 +18,72 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
-	<!-- 启用MVC注解 -->  
-	<mvc:annotation-driven />  
-	<!-- 将 springSwaggerConfig加载到spring容器 -->  
-	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />  
-	<!-- 将自定义的swagger配置类加载到spring容器 -->  
-	<bean class="com.cmc.config.swagger.SwaggerConfig" />  
+	<!-- 不可以和下面的mvc:annotation-driven具体配置兼容，具体原因暂时不清楚 @version 2017/04/1 -->
+	<!-- 
+		<mvc:annotation-driven />
+		-->
 	
-	<!-- Spring Task
-		<task:annotation-driven /> 
-		<context:component-scan base-package="com.cmc.service.task" /> 
-		 -->
-	 
+	<!-- 支持普通变量转换为JSON -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html; charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<!-- 从spring mvc 3.1开始，JSON映射使用MappingJackson2HttpMessageConverter  -->
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html; charset=UTF-8</value>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- 手动注入RequestMappingHandlerMapping（@Controller）和RequestMappingHandlerAdapter（@RequestMapping），默认自动注入这两个Bean-->
+	<!--
+		<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+		<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+			<property name="messageConverters">
+				<list>
+					<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+						<property name="supportedMediaTypes">
+							<list>
+								<value>text/html; charset=UTF-8</value>
+								<value>application/json;charset=UTF-8</value>
+							</list>
+						</property>
+					</bean>
+					<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+						<property name="supportedMediaTypes">
+							<list>
+								<value>text/html; charset=UTF-8</value>
+								<value>application/json;charset=UTF-8</value>
+							</list>
+						</property>
+					</bean>
+				</list>
+			</property>
+		</bean>
+		-->
+	
 	<!-- 组件扫描 -->
-	<context:annotation-config />
+	<!-- <context:annotation-config />，context:component-scan已经默认支持了该标签对应的bean的注入. -->
 	<context:component-scan base-package="com.cmc.web" />
+	
 	<!-- <context:annotation-config/>和<context:component-scan />使用一个就行 -->
  	
 	<!-- 静态资源访问，方案1 -->
-	<!-- <mvc:resources location="/img/" mapping="/img/**" /> -->  
-		  
-	<!-- 静态资源访问，方案2 -->  
-	<!-- <mvc:default-servlet-handler/> -->  
- 	
-	<!-- 视图解析配置 -->
-	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".vm" />
-	</bean>
+	<!-- <mvc:resources location="/img/" mapping="/img/**" /> -->
 	
-	<!-- Swagger资源重定向(仅作为后台使用不提供静态资源) -->
-	<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
-	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
-   
-	<!-- 使项目支持普通类型的变量转换为JSON
+	<!-- 使项目支持普通类型的变量转换为JSON  -->  
+	<!--
 		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 			<property name="messageConverters">
 				<list>
@@ -59,8 +91,16 @@
 				</list>
 			</property>
 		</bean>
-			 -->  
-	<!-- 配置拦截器 -->
+		-->
+    
+	<!-- 视图解析配置 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".vm" />
+	</bean>
+	
+			
+	<!-- 拦截器 -->
 	<!--
 		<mvc:interceptors>
 			<mvc:interceptor>
@@ -74,7 +114,26 @@
 	<!-- 文件上传Bean配置 --> 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8" p:maxUploadSize="1000000"/>
 	
-	<!--Swagger  -->
-	<context:component-scan base-package="com.cmc.config.swagger"/> 
-	<bean class="com.cmc.config.swagger.SwaggerConfig"/>
+	<!-- Spring Task -->
+	<!-- 
+		<task:annotation-driven /> 
+		<context:component-scan base-package="com.cmc.service.task" /> 
+		 --> 
+	
+	<!--Swagger @Deprecated
+		<context:component-scan base-package="com.cmc.config.swagger"/> 
+		<bean class="com.cmc.config.swagger.SwaggerConfig"/>
+		 -->
+	<!-- Swagger资源重定向(仅作为后台使用不提供静态资源) @deprecated
+		<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+		<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+			  -->
+	 
+	<!-- swagger configuartion
+		<mvc:default-servlet-handler />
+		<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+		<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+		<bean name="/applicationSwaggerConfig" class="com.cmc.config.swagger.SwaggerConfig" />
+		 -->
+	 
 </beans>

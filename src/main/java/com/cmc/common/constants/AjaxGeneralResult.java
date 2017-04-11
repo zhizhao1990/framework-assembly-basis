@@ -33,6 +33,18 @@ public class AjaxGeneralResult implements Serializable {
     private AjaxGeneralResult() {
     }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public void setData(JSONObject data) {
+        this.data = data;
+    }
+
     private AjaxGeneralResult(String code, String info) {
         this.code = code;
         this.info = info;

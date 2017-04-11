@@ -1,6 +1,10 @@
 package com.cmc.web.login;
 
+import io.swagger.annotations.ApiOperation;
+
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +25,7 @@ import com.cmc.user.facade.model.UserModel;
 import com.cmc.user.facade.service.UserService;
 
 @Controller
-@RequestMapping("login.htm")
+@RequestMapping(value = "login")
 public class LoginController {
 
     @SuppressWarnings("unused")
@@ -33,7 +37,8 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET, params = "action=login")
+    @ApiOperation(value = "登录界面")
+    @RequestMapping(value = "login.htm", method = RequestMethod.GET)
     public String login(HttpServletRequest req) throws FileNotFoundException {
         // InputStream ins =
         // this.getClass().getClassLoader().getResourceAsStream("config.properties");
@@ -46,7 +51,7 @@ public class LoginController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, params = "action=login")
+    @RequestMapping(value = "login.htm", method = RequestMethod.POST)
     public AjaxGeneralResult login(HttpServletRequest request, UserModel dto) {
         LoginStatus status = loginService.login(dto);
         if (LoginStatus.SUCCESS == status) {
@@ -57,10 +62,24 @@ public class LoginController {
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST, params = "action=signup")
+    @RequestMapping(value = "signup", method = RequestMethod.GET)
     public AjaxGeneralResult signUp(UserModel dto) {
         SignUpStatus status = loginService.signUp(dto);
         return AjaxGeneralResult.getGeneralRst(status.getCode(), status.getDesc());
+    }
+
+    /**
+     * 返回JSON
+     * @return
+     * @author Thomas Lee
+     * @version 2017年4月11日 上午10:37:42
+     */
+
+    @RequestMapping(value = "getjson", method = RequestMethod.GET)
+    public @ResponseBody Object getJson() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("fd", "tt");
+        return map;
     }
 
 }

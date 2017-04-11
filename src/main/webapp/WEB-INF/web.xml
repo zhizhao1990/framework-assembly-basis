@@ -9,15 +9,28 @@
 	<display-name>framework-assembly-basis</display-name>
 	
 	<!--
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
-	-->
+		<welcome-file-list>
+			<welcome-file>index.jsp</welcome-file>
+		</welcome-file-list>
+		-->
 	
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
 	
+	<servlet-mapping>    
+		<servlet-name>default</servlet-name>    
+		<url-pattern>/js/*</url-pattern>    
+	</servlet-mapping>
+	<servlet-mapping>    
+		<servlet-name>default</servlet-name>    
+		<url-pattern>/css/*</url-pattern>    
+	</servlet-mapping>
+	<servlet-mapping>    
+		<servlet-name>default</servlet-name>    
+		<url-pattern>*.html</url-pattern>    
+	</servlet-mapping>
+
 	<!-- 配置Spring容器 -->
 	<listener>
 		<!-- 加载contextConfigLocation配置的文件 -->
@@ -43,7 +56,19 @@
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>*.htm</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>swagger</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/spring/spring-swagger.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>swagger</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 	<!-- 配置veloctiy视图解析？ -->
 	<servlet>
 		<servlet-name>velocity</servlet-name>
@@ -83,17 +108,14 @@
 	
 	<!-- 控制Session的开关？ -->  
 	<!--
-	<filter>  
-		<filter-name>openSession</filter-name>  
-		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>  
-	</filter>  
-	<filter-mapping>  
-		<filter-name>openSession</filter-name>  
-		<url-pattern>/*</url-pattern>  
-	</filter-mapping>
-	-->
+		<filter>  
+			<filter-name>openSession</filter-name>  
+			<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>  
+		</filter>  
+		<filter-mapping>  
+			<filter-name>openSession</filter-name>  
+			<url-pattern>/*</url-pattern>  
+		</filter-mapping>
+		-->
 	
-	<error-page>
-		<location>/error.htm</location>
-	</error-page>
 </web-app>
