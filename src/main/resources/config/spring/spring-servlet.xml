@@ -23,7 +23,7 @@
 		<mvc:annotation-driven />
 		-->
 	
-	<!-- 支持普通变量转换为JSON -->
+	<!-- 配置消息转换器，支持JSON -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">

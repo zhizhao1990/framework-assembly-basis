@@ -31,7 +31,7 @@ function postReq() {
  * 
  * @param flag
  *            {0：添加、1：修改}
- * @returns
+ * @return
  */
 function addOrUpdateUserPost(flag) {
 	var id = $('#id').val();
