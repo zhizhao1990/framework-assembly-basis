@@ -173,8 +173,57 @@ public class InterviewProgramming {
 
     }
 
-    // 排序算法
-    // 数据结构
-    // 查找算法
-    // Socket
+    /**
+     * 排序算法
+     * 参考:
+     * 简单排序:
+     *     SimpleSelectionSorter
+     *     StraightInsertSorter
+     *     BubbleSorter
+     *     
+     * 复杂排序：
+     *     QuickSorter
+     *     BinarySortNode
+     *    （ShellSorter和HeapSorter可以知道思想就行）
+     */
+
+    /**
+     * 数据结构
+     * 参考：
+     * Collection: 
+     *     CollectionDemo
+     *     
+     * Map: 
+     *     MapDemo
+     */
+
+    /**
+     * 查找算法
+     * 二分法：
+     *     BinarySearcher 
+     */
+
+    /**
+     * Socket
+     * 参考：
+     * TCP：
+     *     TCPServer
+     *     TCPClient
+     *    （MultiThreadTCPServer是一个多线程TCP Socket）
+     *    
+     * UDP：
+     *     UDPServer
+     *     UDPClient
+     */
+
+    /**
+     * 线程
+     * 参考：
+     * Thread方式：
+     *     MyThread
+     *     
+     * Runnable方式：
+     *     MyRunner
+     */
+
 }

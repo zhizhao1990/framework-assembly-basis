@@ -16,6 +16,23 @@ import com.cmc.algorithm.sort.common.BinaryNode;
  */
 public class BinarySortNode extends BinaryNode {
 
+    public static void main(String[] args) {
+        /* 构建二叉排序树 */
+        BinaryNode binarySortNode = new BinarySortNode(BinaryNode.NUMS[0]);
+        for (int i = 1; i < BinaryNode.NUMS.length; i++) {
+            binarySortNode.addChild(BinaryNode.NUMS[i]);
+        }
+
+        // （中序）遍历二叉排序树
+        binarySortNode.iterate(binarySortNode);
+        System.out.println("\n");
+        // 先序遍历二叉排序树
+        binarySortNode.iterateDLR(binarySortNode);
+        System.out.println("\n");
+        // 后序遍历二叉排序树
+        binarySortNode.iterateLRD(binarySortNode);
+    }
+
     public BinarySortNode(int value) {
         super(value);
     }
@@ -71,24 +88,6 @@ public class BinarySortNode extends BinaryNode {
                 this.setRChild(new BinarySortNode(num));
             }
         }
-    }
-
-    public static void main(String[] args) {
-
-        /* 构建二叉排序树 */
-        BinaryNode binarySortNode = new BinarySortNode(BinaryNode.NUMS[0]);
-        for (int i = 1; i < BinaryNode.NUMS.length; i++) {
-            binarySortNode.addChild(BinaryNode.NUMS[i]);
-        }
-
-        // （中序）遍历二叉排序树
-        binarySortNode.iterate(binarySortNode);
-        System.out.println("\n");
-        // 先序遍历二叉排序树
-        binarySortNode.iterateDLR(binarySortNode);
-        System.out.println("\n");
-        // 后序遍历二叉排序树
-        binarySortNode.iterateLRD(binarySortNode);
     }
 
 }

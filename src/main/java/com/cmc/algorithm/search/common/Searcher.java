@@ -9,7 +9,7 @@ package com.cmc.algorithm.search.common;
  * @author Thomas Lee
  * @version 2017年3月29日 下午10:16:01
  */
-public interface Search<T extends Comparable<T>> {
+public interface Searcher<T extends Comparable<T>> {
 
     /** 在指定数组中未查到指定元素的结果返回值 */
     int NOT_FOUND = -1;

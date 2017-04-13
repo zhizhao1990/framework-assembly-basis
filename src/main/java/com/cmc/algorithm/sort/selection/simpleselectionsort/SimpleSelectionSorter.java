@@ -17,10 +17,10 @@ import com.cmc.algorithm.sort.common.Sorter;
  * @version 2017年2月22日 下午8:15:37
  * @version 2017年4月7日 下午5:27:17
  */
-public class SimpleSelectionSort extends Sorter {
+public class SimpleSelectionSorter extends Sorter {
 
     public static void main(String[] args) {
-        Sorter simpleSelectionSort = new SimpleSelectionSort();
+        Sorter simpleSelectionSort = new SimpleSelectionSorter();
         simpleSelectionSort.sort(Sorter.NUMS);
         Sorter.out(Sorter.NUMS);
     }

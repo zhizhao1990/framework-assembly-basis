@@ -7,11 +7,11 @@ package com.cmc.algorithm.sort.selection.heapsort;
  * 2016-7-14
  *两个步骤：1，建堆  2，对顶与堆的最后一个元素交换位置
  */
-public class HeapSort {
+public class HeapSorter {
 
     public static void main(String[] args) {
         int a[] = { 3, 1, 5, 7, 2, 4, 9, 6, 10, 8 };
-        HeapSort obj = new HeapSort();
+        HeapSorter obj = new HeapSorter();
         System.out.println("初始值：");
         obj.print(a);
 

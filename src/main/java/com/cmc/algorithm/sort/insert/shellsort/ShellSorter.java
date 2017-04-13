@@ -8,10 +8,10 @@ import com.cmc.algorithm.sort.common.Sorter;
  * @author Thomas Lee
  * @version 2017年2月23日 下午4:42:29
  */
-public class ShellSort extends Sorter {
+public class ShellSorter extends Sorter {
 
     public static void main(String[] args) {
-        Sorter shellSort = new ShellSort();
+        Sorter shellSort = new ShellSorter();
         shellSort.sort(Sorter.NUMS);
         Sorter.out(Sorter.NUMS);
     }

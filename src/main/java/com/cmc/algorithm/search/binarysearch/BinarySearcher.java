@@ -3,7 +3,7 @@
  */
 package com.cmc.algorithm.search.binarysearch;
 
-import com.cmc.algorithm.search.common.Search;
+import com.cmc.algorithm.search.common.Searcher;
 
 /**
  * 二分查找算法
@@ -19,7 +19,7 @@ import com.cmc.algorithm.search.common.Search;
  * @author Thomas Lee
  * @version 2017年3月30日 上午10:46:01
  */
-public class BinarySearch<T extends Comparable<T>> implements Search<T> {
+public class BinarySearcher<T extends Comparable<T>> implements Searcher<T> {
 
     /**
      * 程序入口
@@ -28,8 +28,8 @@ public class BinarySearch<T extends Comparable<T>> implements Search<T> {
      * @version 2017年3月30日 上午10:48:18
      */
     public static void main(String[] args) {
-        Search<Integer> search = new BinarySearch<Integer>();
-        int rst = search.search(Search.NUMS, Search.KEY);
+        Searcher<Integer> search = new BinarySearcher<Integer>();
+        int rst = search.search(Searcher.NUMS, Searcher.KEY);
         System.out.println("下标为：" + rst);
     }
 
@@ -51,7 +51,7 @@ public class BinarySearch<T extends Comparable<T>> implements Search<T> {
      */
     private int binarySearch(T[] nums, int low, int high, T key) {
         if (low > high) {
-            return Search.NOT_FOUND;
+            return Searcher.NOT_FOUND;
         }
         int middle = (low + high) >> 1;
         if (nums[middle] == key) {

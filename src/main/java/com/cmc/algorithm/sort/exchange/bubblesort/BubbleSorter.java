@@ -7,10 +7,10 @@ import com.cmc.algorithm.sort.common.Sorter;
  * @author Thomas Lee
  * @version 2017年2月22日 下午7:17:16
  */
-public class BubbleSort extends Sorter {
+public class BubbleSorter extends Sorter {
 
     public static void main(String[] args) {
-        Sorter bubbleSort = new BubbleSort();
+        Sorter bubbleSort = new BubbleSorter();
         bubbleSort.sort(NUMS);
         Sorter.out(NUMS);
     }
