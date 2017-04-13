@@ -6,7 +6,7 @@ package com.cmc.algorithm.search.binarysearch;
 import com.cmc.algorithm.search.common.Search;
 
 /**
- * 二叉树查找算法
+ * 二分查找算法
  * <p>
  * 基本思路：
  * </p>
@@ -20,6 +20,18 @@ import com.cmc.algorithm.search.common.Search;
  * @version 2017年3月30日 上午10:46:01
  */
 public class BinarySearch<T extends Comparable<T>> implements Search<T> {
+
+    /**
+     * 程序入口
+     * @param args
+     * @author Thomas Lee
+     * @version 2017年3月30日 上午10:48:18
+     */
+    public static void main(String[] args) {
+        Search<Integer> search = new BinarySearch<Integer>();
+        int rst = search.search(Search.NUMS, Search.KEY);
+        System.out.println("下标为：" + rst);
+    }
 
     @Override
     public int search(T[] nums, T key) {
@@ -38,32 +50,19 @@ public class BinarySearch<T extends Comparable<T>> implements Search<T> {
      * @return 如果查询到要查询的元素就返回其下标，否则返回-1
      */
     private int binarySearch(T[] nums, int low, int high, T key) {
-        if (low <= high) {
-            int middle = (low + high) >> 1;
-            if (nums[middle] == key) {
-                return middle;
-            } else if (nums[middle].compareTo(key) > 0) {
-                high = middle - 1;
-                return this.binarySearch(nums, low, high, key);
-            } else {
-                low = middle + 1;
-                return this.binarySearch(nums, low, high, key);
-            }
+        if (low > high) {
+            return Search.NOT_FOUND;
         }
-        return Search.NOT_FOUND;
-    }
-
-    /**
-     * 程序入口
-     * @param args
-     * @author Thomas Lee
-     * @version 2017年3月30日 上午10:48:18
-     */
-    public static void main(String[] args) {
-        Search<Integer> search = new BinarySearch<Integer>();
-        int rst = search.search(Search.NUMS, 3);
-        System.out.println("下标为：" + rst);
-        System.out.println(Search.NUMS[rst]);
+        int middle = (low + high) >> 1;
+        if (nums[middle] == key) {
+            return middle;
+        } else if (nums[middle].compareTo(key) > 0) {
+            high = middle - 1;
+            return this.binarySearch(nums, low, high, key);
+        } else {
+            low = middle + 1;
+            return this.binarySearch(nums, low, high, key);
+        }
     }
 
 }
