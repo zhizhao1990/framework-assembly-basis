@@ -4,14 +4,31 @@ import java.util.Comparator;
 
 import com.cmc.algorithm.sort.common.AdvancedSorter;
 
-public class AdvancedBubbleSort extends AdvancedSorter {
+/**
+ * 高级冒泡排序
+ * @param <T> T extends Comparable<T>
+ * @author Thomas Lee
+ * @version 2017年4月14日 下午5:19:07
+ */
+public class AdvancedBubbleSort<T extends Comparable<T>> extends AdvancedSorter<T> {
+
+    public static void main(String[] args) {
+        AdvancedSorter<Integer> advanceSorter = new AdvancedBubbleSort<Integer>();
+        advanceSorter.sort(AdvancedSorter.NUMS, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1.intValue() - o2.intValue();
+            }
+        });
+        AdvancedSorter.out(AdvancedSorter.NUMS);
+    }
 
     @Override
     public void sort(int[] nums) {
     }
 
     @Override
-    public <T> void sort(T[] list, Comparator<T> comp) {
+    public void sort(T[] list, Comparator<T> comp) {
         for (int i = 0; i < list.length; i++) {
             for (int j = 0; j < list.length - 1 - i; j++) {
                 if (comp.compare(list[j], list[j + 1]) > 0) {
@@ -37,16 +54,5 @@ public class AdvancedBubbleSort extends AdvancedSorter {
         }
     }
     */
-
-    public static void main(String[] args) {
-        AdvancedSorter advanceSorter = new AdvancedBubbleSort();
-        advanceSorter.sort(AdvancedSorter.NUMS, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1.intValue() - o2.intValue();
-            }
-        });
-        AdvancedSorter.out(AdvancedSorter.NUMS);
-    }
 
 }

@@ -21,6 +21,12 @@ public class SingletonPattern1 {
     private SingletonPattern1() {
     }
 
+    /**
+     * 获取实例.
+     * @return 实例.
+     * @author Thomas Lee
+     * @version 2017年4月14日 下午3:57:13
+     */
     public static SingletonPattern1 getInstance() {
         if (null == instance) {
             instance = new SingletonPattern1();
