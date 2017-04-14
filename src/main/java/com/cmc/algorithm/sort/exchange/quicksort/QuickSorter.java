@@ -28,12 +28,11 @@ public class QuickSorter extends Sorter {
     public static void main(String[] args) {
         // a
         Sorter quickSorter = new QuickSorter();
-        quickSorter.sort(Sorter.NUMS);
     }
 
     @Override
     public void sort(int[] nums) {
-        this.quickSort(nums, 0, nums.length - 1);
+        //
     }
 
     /**
