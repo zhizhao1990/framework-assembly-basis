@@ -1,21 +1,21 @@
 package com.cmc.demo.collection;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
- * Collection 实例
+ * Collection demo.
  * @author Thomas Lee
  * @version 2017年2月9日 下午3:40:08
  */
 public class CollectionDemo {
 
-    @SuppressWarnings("unused")
-    private static final Logger LOG = LoggerFactory.getLogger(CollectionDemo.class);
+    public static void main(String[] args) {
+    }
 
     /**
      * Stack实例
@@ -59,6 +59,18 @@ public class CollectionDemo {
         while (q.peek() != null) {
             System.out.println(q.poll());
         }
+    }
+
+    /**
+     * 测试java.utils.Collections，对集合进行查找、排序和线程安全等操作。
+     * @author Thomas Lee
+     * @version 2017年3月27日 下午9:39:08
+     */
+    public static void testCollections() {
+        List<String> list = Collections.synchronizedList(new ArrayList<String>());
+        Collections.binarySearch(list, "key");
+        Collections.sort(list);
+        Collections.synchronizedList(list);
     }
 
 }

@@ -1,21 +1,19 @@
-package com.cmc.mq.consumer.service.biz.impl;
+package com.cmc.demo.mq.consumer;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * ActiveMQ Consumer Test
+ * 消息消费者.
  * @author Thomas Lee
- * @version 2017年3月12日 下午12:32:57
+ * @version 2017年4月14日 下午2:27:49
  */
-public class MQConsumerBizImplTest {
+public class Consumer {
 
     public static void main(String[] args) {
-
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/config/spring-context.xml");
         context.start();
         context.stop();
         context.close();
-
     }
 
 }

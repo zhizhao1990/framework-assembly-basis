@@ -3,6 +3,7 @@ package com.cmc.demo.map;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -11,11 +12,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import net.sf.json.JSONObject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Map 实例
+ * Map 实例.
  * @author Thomas Lee
  * @version 2017年2月9日 下午3:40:48
  * @version 2017年4月1日 下午1:41:09
@@ -23,6 +26,10 @@ import org.slf4j.LoggerFactory;
 public class MapDemo {
 
     private static final Logger LOG = LoggerFactory.getLogger(MapDemo.class);
+
+    public static void main(String[] args) {
+        testMapOutputOrder();
+    }
 
     /**
      * 迭代Map
@@ -133,8 +140,26 @@ public class MapDemo {
         }
     }
 
-    public static void main(String[] args) {
-        MapDemo.testMapOutputOrder();
+    /**
+     * Map转换为JSONObject.
+     * @author Thomas Lee
+     * @version 2017年4月14日 下午2:25:27
+     */
+    public static void Map2JSONObject() {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("key1", "value1");
+        map.put("key2", "value2");
+        map.put("key3", "value3");
+        map.put("key4", "value4");
+
+        JSONObject obj = new JSONObject();
+        obj.put("map", map);
+        // System.out.println(obj);
+
+        System.out.println(new Date().toString());
+
+        // new Thread(new MyThread()).start();
+        System.out.println(new Date().toString());
     }
 
 }
