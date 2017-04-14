@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
  * @author Thomas Lee
  * @version 2017年4月5日 上午11:57:27
  */
-public class ObjSerializationAndDeserializationDemo {
+public class SerializationDemo {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ObjSerializationAndDeserializationDemo.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SerializationDemo.class);
 
     public static void main(String[] args) {
         // 将Person对象序列化
