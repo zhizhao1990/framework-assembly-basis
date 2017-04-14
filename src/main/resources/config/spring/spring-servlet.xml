@@ -24,6 +24,7 @@
 		-->
 	
 	<!-- 配置消息转换器，支持JSON -->
+	<!-- mvc:annotation-driven注入@Controller和@RequestMapping对应的Bean以及定义消息转换器 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
@@ -74,7 +75,7 @@
 		-->
 	
 	<!-- 组件扫描 -->
-	<!-- <context:annotation-config />，context:component-scan已经默认支持了该标签对应的bean的注入. -->
+	<!-- <context:annotation-config />，@Required, @Resource等注解对应的bean，context:component-scan已经默认支持了该标签对应的bean的注入. -->
 	<context:component-scan base-package="com.cmc.web" />
 	
 	<!-- <context:annotation-config/>和<context:component-scan />使用一个就行 -->
