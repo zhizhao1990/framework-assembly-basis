@@ -26,7 +26,6 @@ public class QuickSorter extends Sorter {
      * @version 2017年4月7日 下午5:19:44
      */
     public static void main(String[] args) {
-        // TMP
         Sorter quickSorter = new QuickSorter();
         quickSorter.sort(Sorter.NUMS);
         Sorter.out(Sorter.NUMS);
