@@ -1,4 +1,4 @@
-package com.cmc.demo.javase.serialization;
+package com.cmc.demo.serialization;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
