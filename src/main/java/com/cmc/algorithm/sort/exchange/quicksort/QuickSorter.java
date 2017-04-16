@@ -6,7 +6,7 @@ package com.cmc.algorithm.sort.exchange.quicksort;
 import com.cmc.algorithm.sort.common.Sorter;
 
 /**
- * 交换排序 —— 快速排序（Quick Sort）
+ * 交换排序 —— 快速排序（Quick Sort）.
  * <p>
  * 算法思路：<br><br>
  * 通过一趟排序将待排序的记录分割成独立的两部分。<br>
@@ -19,12 +19,6 @@ import com.cmc.algorithm.sort.common.Sorter;
  */
 public class QuickSorter extends Sorter {
 
-    /**
-     * 程序入口 
-     * @param args 参数
-     * @author Thomas Lee
-     * @version 2017年4月7日 下午5:19:44
-     */
     public static void main(String[] args) {
         Sorter quickSorter = new QuickSorter();
         quickSorter.sort(Sorter.NUMS);
@@ -33,19 +27,20 @@ public class QuickSorter extends Sorter {
 
     @Override
     public void sort(int[] nums) {
+        // 调用快速排序的一种算法，可以切换算法策略（有待改善，可以通过调用一个类中不同的方法，也可以通过调用多个类 —— 策略模式）.
         this.quickSort(nums, 0, nums.length - 1);
     }
 
     /**
      * 快速排序
-     * @param nums 数组
-     * @param low 低值
-     * @param high 高值
+     * @param nums 数组.
+     * @param low 低值.
+     * @param high 高值.
      * @author Thomas Lee
      * @version 2017年4月7日 下午5:18:34
      */
     private void quickSort(int[] nums, int low, int high) {
-        // 终止条件，否则会因为无法退出导致栈溢出错误（java.lang.StackOverflowError)
+        // 终止条件，否则会因为递归太深导致栈溢出错误（java.lang.StackOverflowError)
         if (low < high) {
             int middle = this.getBaseNumIndex(nums, low, high);
             this.quickSort(nums, low, middle - 1);
@@ -54,19 +49,19 @@ public class QuickSorter extends Sorter {
     }
 
     /**
-     * 获取基准元素的下标
-     * @param nums 数组
-     * @param low 低值
-     * @param high 高值
-     * @return 基准元素下标
+     * 获取基准元素的下标.
+     * @param nums 数组.
+     * @param low 低值.
+     * @param high 高值.
+     * @return 基准元素下标.
      * @author Thomas Lee
      * @version 2017年4月7日 下午5:18:29
      */
     private int getBaseNumIndex(int[] nums, int low, int high) {
         // 基准元素，排序中会空出来的一个位置
         int base = nums[low];
-        while (low < high) {
 
+        while (low < high) {
             // 从high开始找比基准小的，与low换位置
             while (low < high && nums[high] >= base) {
                 high--;

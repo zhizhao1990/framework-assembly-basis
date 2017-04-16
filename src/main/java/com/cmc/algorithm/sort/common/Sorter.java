@@ -4,7 +4,7 @@
 package com.cmc.algorithm.sort.common;
 
 /**
- * 排序算法抽象类
+ * 排序算法抽象类.
  * @author Thomas Lee
  * @version 2017年2月22日 下午8:25:20
  */
@@ -14,18 +14,17 @@ public abstract class Sorter {
 
     /**
      * 排序算法
-     * @param nums 要排序的数组
+     * @param nums 要排序的数组.
      * @author Thomas Lee
      * @version 2017年2月23日 上午9:20:04
-     * @return int[] 排序好的数组（默认按照从小到大的顺序）
      */
     public abstract void sort(int[] nums);
 
     /**
-     * 交换数组中的两个数值
-     * @param nums 数组
-     * @param i 数组索引
-     * @param j 数组索引
+     * 交换数组中的两个数值.
+     * @param nums 数组.
+     * @param i 数组索引.
+     * @param j 数组索引.
      * @author Thomas Lee
      * @version 2017年4月7日 上午10:12:11
      */
@@ -36,8 +35,8 @@ public abstract class Sorter {
     }
 
     /**
-     * 打印数组到控制台
-     * @param nums 数组
+     * 打印数组到控制台.
+     * @param nums 数组.
      * @author Thomas Lee
      * @version 2017年4月7日 上午10:12:46
      */

@@ -15,18 +15,13 @@ import com.cmc.algorithm.search.common.Searcher;
  * <br>
  * 1. 
  * </p>
- * @param <T> 实现了Comparable<T>接口的泛型
+ * @param <T> 实现了Comparable<T>接口的泛型.
  * @author Thomas Lee
  * @version 2017年3月30日 上午10:46:01
+ * @version 2017年4月16日 下午12:02:56
  */
 public class BinarySearcher<T extends Comparable<T>> implements Searcher<T> {
 
-    /**
-     * 程序入口
-     * @param args
-     * @author Thomas Lee
-     * @version 2017年3月30日 上午10:48:18
-     */
     public static void main(String[] args) {
         Searcher<Integer> search = new BinarySearcher<Integer>();
         int rst = search.search(Searcher.NUMS, Searcher.KEY);
@@ -39,15 +34,15 @@ public class BinarySearcher<T extends Comparable<T>> implements Searcher<T> {
     }
 
     /**
-     * 在给定的有序数组中二叉树查找指定元素
+     * 在给定的有序数组中二叉树查找指定元素.
+     * @param nums 有序数组.
+     * @param low 数组最低值.
+     * @param high 数组最高值.
+     * @param key 要查询的对象.
+     * @return 如果查询到要查询的元素就返回其下标，否则返回-1.
      * @author Thomas Lee
      * @version 2017年3月29日 下午10:45:20
      * @version 2017年3月30日 上午10:51:10
-     * @param nums 有序数组
-     * @param low 数组最低值
-     * @param high 数组最高值
-     * @param key 要查询的对象
-     * @return 如果查询到要查询的元素就返回其下标，否则返回-1
      */
     private int binarySearch(T[] nums, int low, int high, T key) {
         if (low > high) {
