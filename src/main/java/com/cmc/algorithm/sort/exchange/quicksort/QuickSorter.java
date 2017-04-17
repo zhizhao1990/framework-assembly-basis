@@ -32,7 +32,7 @@ public class QuickSorter extends Sorter {
     }
 
     /**
-     * 快速排序
+     * 快速排序.
      * @param nums 数组.
      * @param low 低值.
      * @param high 高值.
@@ -41,11 +41,12 @@ public class QuickSorter extends Sorter {
      */
     private void quickSort(int[] nums, int low, int high) {
         // 终止条件，否则会因为递归太深导致栈溢出错误（java.lang.StackOverflowError)
-        if (low < high) {
-            int middle = this.getBaseNumIndex(nums, low, high);
-            this.quickSort(nums, low, middle - 1);
-            this.quickSort(nums, middle + 1, high);
+        if (low >= high) {
+            return;
         }
+        int middle = this.getBaseNumIndex(nums, low, high);
+        this.quickSort(nums, low, middle - 1);
+        this.quickSort(nums, middle + 1, high);
     }
 
     /**
@@ -62,14 +63,14 @@ public class QuickSorter extends Sorter {
         int base = nums[low];
 
         while (low < high) {
-            // 从high开始找比基准小的，与low换位置
-            while (low < high && nums[high] >= base) {
+            // 从high开始找比基准小的，与low换位置，此处如果没有=号，那么有可能会导致无休止的递归下去.
+            while (nums[high] >= base && low < high) {
                 high--;
             }
             nums[low] = nums[high];
 
             // 从low开始找比基准大，放到之前high空出来的位置上
-            while (low < high && nums[low] <= base) {
+            while (nums[low] <= base && low < high) {
                 low++;
             }
             nums[high] = nums[low];
