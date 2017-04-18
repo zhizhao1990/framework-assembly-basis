@@ -1,7 +1,6 @@
 /*
  * Licensed to the Modon Software Foundation (MSF).
  */
-package com.cmc.algorithm.sort.common;
 
 /**
  * 排序算法抽象类.
@@ -38,13 +37,12 @@ public abstract class Sorter {
      * 打印数组到控制台.
      * @param nums 数组.
      * @author Thomas Lee
-     * @version 2017年4月7日 上午10:12:46    
+     * @version 2017年4月7日 上午10:12:46
      */
     public static void out(int[] nums) {
         for (int num : nums) {
             System.out.print(num + " ");
         }
-        System.out.println("\n");
     }
 
 }

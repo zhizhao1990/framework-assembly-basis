@@ -26,6 +26,11 @@ import com.cmc.user.facade.entity.User;
 import com.cmc.user.facade.model.UserModel;
 import com.cmc.user.facade.service.UserService;
 
+/**
+ * 用户相关操作业务类.
+ * @author Thomas Lee
+ * @version 2017年4月18日 下午6:28:13
+ */
 @Controller
 @RequestMapping("user.htm")
 public class UserController {
@@ -42,6 +47,7 @@ public class UserController {
 
     // @Autowired
     // private CacheManager cacheManager;
+
     @RequestMapping(method = RequestMethod.GET, params = "action=add")
     public String add() {
         try {
@@ -57,9 +63,8 @@ public class UserController {
         return "user/detail";
     }
 
-    @ResponseBody
     @RequestMapping(method = RequestMethod.POST, params = "action=add")
-    public AjaxGeneralResult add(HttpServletRequest request, UserModel dto) {
+    public @ResponseBody AjaxGeneralResult add(HttpServletRequest request, UserModel dto) {
         try {
             String url = FileUploadUtil.upload(request);
             if (StringUtils.isBlank(url)) {
@@ -96,48 +101,42 @@ public class UserController {
         return "user/detail";
     }
 
-    @ResponseBody
     @RequestMapping(method = RequestMethod.POST, params = "action=update")
-    public AjaxGeneralResult update(UserModel dto) {
+    public @ResponseBody AjaxGeneralResult update(UserModel dto) {
         return userService.update(dto) ? AjaxGeneralResult.getSuccessRst("更新用户信息") : AjaxGeneralResult.getFailureRst("更新用户信息");
     }
 
-    @ResponseBody
     @RequestMapping(method = RequestMethod.POST, params = "action=delete")
-    public AjaxGeneralResult delete(UserModel dto) {
+    public @ResponseBody AjaxGeneralResult delete(UserModel dto) {
         return userService.delete(dto) ? AjaxGeneralResult.getSuccessRst("删除用户信息") : AjaxGeneralResult.getFailureRst("删除用户信息");
     }
 
-    @ResponseBody
     @RequestMapping(method = RequestMethod.GET, params = "action=getsampleuser")
-    public User getSampleUser() {
+    public @ResponseBody User getSampleUser() {
         User user = new User();
         user.setId("111111");
         return user;
     }
 
     /**
-     * 数据校验：后端（通过AJAX）间接校验
-     * 
+     * 数据校验：后端（通过AJAX）间接校验.
      * @author Thomas Lee
      * @since 2016年12月22日 上午10:16:56
      */
-    @ResponseBody
     @RequestMapping(method = RequestMethod.POST, params = "action=existstheuser")
-    public AjaxGeneralResult existsTheUser(String userId) {
+    public @ResponseBody AjaxGeneralResult existsTheUser(String userId) {
         /* business logic is omitted. */
         return new Random().nextBoolean() ? AjaxGeneralResult.getSuccessRst() : AjaxGeneralResult.getFailureRst();
     }
 
     /**
-     * 获取所有权限列表
+     * 获取所有权限列表.
      * @author Thomas Lee
      * @version 2017年3月13日 下午5:55:31
      * @return
      */
-    @ResponseBody
     @RequestMapping(method = RequestMethod.GET, params = "action=getpermissions")
-    public AjaxGeneralResult getAllPermissions() {
+    public @ResponseBody AjaxGeneralResult getAllPermissions() {
         // List<PermissionModel> mPermissions = permissionService.getAll();
         PermissionModel mPermission = permissionService.get(1L);
         LOG.info(mPermission.getPermName());
