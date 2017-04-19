@@ -49,7 +49,7 @@ public class UDPClient implements Client {
     }
 
     // http://batitan.iteye.com/blog/253483 
-    public static void javaSETimer(Client client) {
+    public static void javaSETimer(final Client client) {
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             public void run() {
