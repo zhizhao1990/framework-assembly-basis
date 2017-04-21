@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * MultiThreading Server Instance
+ * MultiThreading Server Instance.
  * @author Thomas
  * @version 2017年1月19日 下午8:18:47
  */
@@ -42,7 +42,6 @@ public class MultiThreadTCPServer implements Server {
      * @version 2017年3月28日 下午7:37:26
      */
     private class Runner implements Runnable {
-
         private Socket socket;
 
         public Runner(Socket socket) {

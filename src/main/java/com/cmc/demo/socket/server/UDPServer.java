@@ -8,42 +8,34 @@ import java.net.SocketException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * UDP Server.
+ * @author Thomas Lee
+ * @version 2017年4月21日 下午4:15:35
+ */
 public class UDPServer implements Server {
 
     private static final Logger LOG = LoggerFactory.getLogger(UDPServer.class);
-
     private static final int UDP_SERVER_PORT = 9999;
+
+    public static void main(String[] args) {
+        new UDPServer().start();
+    }
 
     @Override
     public void start() {
-        DatagramSocket datagramSocket = null;
-        try {
-            datagramSocket = new DatagramSocket(UDP_SERVER_PORT);
+        try (DatagramSocket datagramSocket = new DatagramSocket(UDP_SERVER_PORT)) {
             byte[] buffer = new byte[1024];
             DatagramPacket datagramPacket = new DatagramPacket(buffer, buffer.length);
             while (true) {
                 datagramSocket.receive(datagramPacket);
-                this.log(new String(buffer, 0, datagramPacket.getLength()));
+                System.out.println(new String(buffer, 0, datagramPacket.getLength()));
             }
         } catch (SocketException e) {
-            this.logError(e);
+            LOG.error(e.getMessage(), e);
         } catch (IOException e) {
-            this.logError(e);
-        } finally {
-            datagramSocket.close();
+            LOG.error(e.getMessage(), e);
         }
-    }
-
-    private void logError(Exception e) {
-        LOG.error("", e);
-    }
-
-    private void log(String msg) {
-        System.out.println(msg);
-    }
-
-    public static void main(String[] args) {
-        new UDPServer().start();
     }
 
 }
