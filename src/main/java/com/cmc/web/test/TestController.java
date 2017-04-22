@@ -28,7 +28,6 @@ public class TestController {
      * @author Thomas Lee
      * @version 2017年3月21日 下午2:12:48
      */
-    
     @RequestMapping(value = "/testhibernate", method = RequestMethod.GET)
     public void testHibernate() {
         designerService.testHibernateCRUD();
