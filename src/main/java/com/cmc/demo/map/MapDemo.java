@@ -3,7 +3,6 @@ package com.cmc.demo.map;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -18,21 +17,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Map 实例.
+ * Map实例.
  * @author Thomas Lee
  * @version 2017年2月9日 下午3:40:48
  * @version 2017年4月1日 下午1:41:09
+ * @version 2017年4月21日 下午4:09:09
  */
 public class MapDemo {
 
     private static final Logger LOG = LoggerFactory.getLogger(MapDemo.class);
 
     public static void main(String[] args) {
-        testMapOutputOrder();
+        // testMapOutputOrder();
+        Map2JSONObject();
     }
 
     /**
-     * 迭代Map
+     * 迭代Map.
      * @author Thomas Lee
      * @version 2017年2月9日 下午3:44:20
      */
@@ -57,10 +58,11 @@ public class MapDemo {
             String key = it.next();
             System.out.println(key + " = " + map.get(key));
         }
+
     }
 
     /**
-     * 比较Map
+     * 比较Map.
      * @author Thomas Lee
      * @version 2017年3月29日 下午3:54:32
      */
@@ -73,15 +75,15 @@ public class MapDemo {
         map2.put("order", 2);
         maps.add(map2);
 
-        // 调用Java集合比较器，实现匿名类
+        // 调用Java集合比较器，实现匿名类.
         Collections.sort(maps, new Comparator<Map<String, Integer>>() {
             @Override
             public int compare(Map<String, Integer> map1, Map<String, Integer> map2) {
                 return map2.get("order") - map1.get("order");
             }
-
         });
-        // 调用自定义的比较器
+
+        // 调用自定义的比较器.
         // Collections.sort(maps, new MyComparator<Map<String, Integer>>());
         Iterator<Map<String, Integer>> iMaps = maps.iterator();
         while (iMaps.hasNext()) {
@@ -91,7 +93,7 @@ public class MapDemo {
     }
 
     /**
-     * 测试HashMap、TreeMap和LinkedHashMap的输出顺序
+     * 测试HashMap、TreeMap和LinkedHashMap的输出顺序.
      * @author Thomas Lee
      * @version 2017年4月1日 下午2:00:32
      */
@@ -111,7 +113,7 @@ public class MapDemo {
 
         System.out.println("\n");
 
-        // TreeMap按照自然顺序或者自定顺序遍历（public TreeMap(Comparator<? super K> comparator);）（自然顺序或者自定顺序遍历）
+        // TreeMap按照自然顺序或者自定顺序遍历（public TreeMap(Comparator<? super K> comparator);）（自然顺序或者自定顺序遍历）.
         Map<String, String> treeMap = new TreeMap<String, String>();
         treeMap.put("aa", "1");
         treeMap.put("b", "1");
@@ -126,7 +128,7 @@ public class MapDemo {
 
         System.out.println("\n");
 
-        // LinkedHashMap按照输入的顺序进行遍历（输入顺序遍历）
+        // LinkedHashMap按照输入的顺序进行遍历（输入顺序遍历）.
         Map<String, String> linkedHashMap = new LinkedHashMap<String, String>();
         linkedHashMap.put("aa", "1");
         linkedHashMap.put("b", "1");
@@ -154,18 +156,13 @@ public class MapDemo {
 
         JSONObject obj = new JSONObject();
         obj.put("map", map);
-        // System.out.println(obj);
-
-        System.out.println(new Date().toString());
-
-        // new Thread(new MyThread()).start();
-        System.out.println(new Date().toString());
+        System.out.println(obj);
     }
 
 }
 
 /**
- * 自定义比较器
+ * 自定义比较器.
  * @param <T>
  * @author Thomas Lee
  * @version 2017年3月29日 下午5:01:31

@@ -98,15 +98,15 @@ public class InterviewProgramming {
             return counter;
         } catch (FileNotFoundException e) {
             LOG.error(e.getMessage(), e);
-            return -1;
+            return 0;
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
-            return -1;
+            return 0;
         }
     }
 
     /**
-     * 获取指定文件下的所有文件名称
+     * 获取指定文件下的所有文件名称.
      * <p>
      * 使用到了递归思想.
      * </p>
@@ -127,7 +127,7 @@ public class InterviewProgramming {
     }
 
     /**
-     * 最大递增子序列的和
+     * 最大递增子序列的和.
      * <p>
      * 问题描述：
      * 已知一个含有n个正整数的数组，写一个程序能让其找到已知数组递增子序列的最大和。
@@ -147,8 +147,8 @@ public class InterviewProgramming {
      * </p>
      * @author Thomas Lee
      * @version 2017年4月4日 上午12:05:16
-     * @param nums 序列
-     * @return 最大递增子序列的和
+     * @param nums 序列.
+     * @return 最大递增子序列的和.
      */
     public static int maxIncreasingSubsequenceSum(List<Integer> nums) {
         int sum = 0;
@@ -170,7 +170,6 @@ public class InterviewProgramming {
         } else {
             return 0;
         }
-
     }
 
     /**

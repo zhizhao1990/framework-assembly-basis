@@ -24,7 +24,7 @@ public class TestController {
     private DesignerService designerService;
 
     /**
-     * 测试Hibernate
+     * 测试Hibernate.
      * @author Thomas Lee
      * @version 2017年3月21日 下午2:12:48
      */
@@ -43,7 +43,7 @@ public class TestController {
     }
 
     /**
-     * 测试Hibernate的三种状态
+     * 测试Hibernate的三种状态.
      * @author Thomas Lee
      * @version 2017年3月22日 下午4:38:07
      */

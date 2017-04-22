@@ -16,6 +16,12 @@ public class TCPClient implements Client {
     private static final int SERVER_PORT = 8888;
     private static final String MESSAGE = "Hello Server.";
 
+    public static void main(String[] args) {
+        for (int i = 0; i < 20; i++) {
+            new TCPClient().send();
+        }
+    }
+
     @Override
     public void send() {
         try (Socket socket = new Socket(SERVER_IP, SERVER_PORT)) {
@@ -28,12 +34,6 @@ public class TCPClient implements Client {
             LOG.error(e.getMessage(), e);
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
-        }
-    }
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 20; i++) {
-            new TCPClient().send();
         }
     }
 

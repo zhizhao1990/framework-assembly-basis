@@ -32,9 +32,8 @@ public class ProgrammerController {
      * @author Thomas Lee
      * @version 2017年3月17日 下午2:08:58
      */
-    @ResponseBody
     @RequestMapping(value = "/add.htm", method = RequestMethod.GET)
-    public AjaxResult add(ProgrammerModel mProgrammer) {
+    public @ResponseBody AjaxResult add(ProgrammerModel mProgrammer) {
         boolean rst = programmerService.add(mProgrammer);
         if (!rst) {
             LOG.error("添加程序员失败！");
