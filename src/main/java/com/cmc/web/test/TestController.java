@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cmc.designer.facade.model.DesignerModel;
 import com.cmc.designer.facade.service.DesignerService;
+import com.cmc.user.facade.entity.User;
 
 @Controller
 @RequestMapping("/test")
@@ -37,6 +38,7 @@ public class TestController {
             while (imDesigner.hasNext()) {
                 DesignerModel mDesigner = imDesigner.next();
                 LOG.info(mDesigner.toString());
+                System.out.println();
             }
         }
     }
@@ -49,6 +51,17 @@ public class TestController {
     @RequestMapping(value = "/testhibernatethreestatus", method = RequestMethod.GET)
     public void testHibernateThreeStatus() {
         designerService.testHibernateThreeStatus();
+    }
+
+    private static User user = null;
+
+    static {
+        user = new User();
+        user.setAge(11);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(TestController.user.getAge());
     }
 
 }
