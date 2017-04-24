@@ -16,6 +16,7 @@ import com.cmc.algorithm.sort.common.Sorter;
  * @author Thomas Lee
  * @version 2017年2月23日 下午6:56:07
  * @version 2017年4月7日 下午5:27:25
+ * @version 2017年4月24日 下午1:37:04
  */
 public class QuickSorter extends Sorter {
 
@@ -64,6 +65,7 @@ public class QuickSorter extends Sorter {
 
         while (low < high) {
             // 从high开始找比基准小的，与low换位置，此处如果没有=号，那么有可能会导致无休止的递归下去.
+            // 此处使用if也行，但是为了减少比较次数，还是使用while比较合理（下同）.
             while (nums[high] >= base && low < high) {
                 high--;
             }
